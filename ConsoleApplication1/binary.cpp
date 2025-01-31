@@ -2,29 +2,30 @@
 #include "functions.h"
 
 string Binary(const string& IP) {
-	string binaryIP; // результат
-	string octet; // текущий октет
+	using namespace std;
+	string binaryIP; // Г°ГҐГ§ГіГ«ГјГІГ ГІ
+	string octet; // ГІГҐГЄГіГ№ГЁГ© Г®ГЄГІГҐГІ
 	try {
 		for (char ch : IP) {
 			if (ch == '.') {
 				if (octet.empty()) {
-					throw invalid_argument("Некорректный IP: пустой октет.");
+					throw invalid_argument("ГЌГҐГЄГ®Г°Г°ГҐГЄГІГ­Г»Г© IP: ГЇГіГ±ГІГ®Г© Г®ГЄГІГҐГІ.");
 				}
 
-				// преобразуем октет в число и затем в двоичку
+				// ГЇГ°ГҐГ®ГЎГ°Г Г§ГіГҐГ¬ Г®ГЄГІГҐГІ Гў Г·ГЁГ±Г«Г® ГЁ Г§Г ГІГҐГ¬ Гў Г¤ГўГ®ГЁГ·ГЄГі
 				int num = stoi(octet);
 				if (num < 0 || num > 255) {
-					throw invalid_argument("Октет вне диапазона: необходимо число от 0 до 255.");
+					throw invalid_argument("ГЋГЄГІГҐГІ ГўГ­ГҐ Г¤ГЁГ ГЇГ Г§Г®Г­Г : Г­ГҐГ®ГЎГµГ®Г¤ГЁГ¬Г® Г·ГЁГ±Г«Г® Г®ГІ 0 Г¤Г® 255.");
 				}
 				bitset<8> binary(num);
 				binaryIP += binary.to_string();
-				octet.clear(); //очищаем октет для следующего числа
+				octet.clear(); //Г®Г·ГЁГ№Г ГҐГ¬ Г®ГЄГІГҐГІ Г¤Г«Гї Г±Г«ГҐГ¤ГіГѕГ№ГҐГЈГ® Г·ГЁГ±Г«Г 
 			}
 			else if (isdigit(ch)) {
-				octet += ch; // +цифра к новому октету
+				octet += ch; // +Г¶ГЁГґГ°Г  ГЄ Г­Г®ГўГ®Г¬Гі Г®ГЄГІГҐГІГі
 			}
 			else {
-				throw invalid_argument("Недопустимый символ");
+				throw invalid_argument("ГЌГҐГ¤Г®ГЇГіГ±ГІГЁГ¬Г»Г© Г±ГЁГ¬ГўГ®Г«");
 			}
 		}
 
@@ -33,7 +34,7 @@ string Binary(const string& IP) {
 		binaryIP += binary.to_string();
 	}
 	catch (const invalid_argument& e) {
-		cerr << "Ошибка: " <<  e.what() << endl;
+		cerr << "ГЋГёГЁГЎГЄГ : " <<  e.what() << endl;
 		return " ";
 	}
 
