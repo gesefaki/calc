@@ -2,7 +2,6 @@
 #include "functions.h"
 
 string Binary(const string& IP) {
-	setlocale(LC_ALL, "RUS");
 	string binaryIP; // result string
 	string octet; // current octet
 	try {
