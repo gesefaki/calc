@@ -3,7 +3,7 @@
 
 string Binary(const string& IP) {
 	string binaryIP; // result
-	string octet; // ������� �����
+	string octet; // current octet
 	try {
 		for (char ch : IP) {
 			if (ch == '.') {
