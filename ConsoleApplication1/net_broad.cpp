@@ -5,11 +5,11 @@ string netAddress(const string& binaryIP, const int mask) {
 	string decimal;
 	string netIP = binaryIP;
 
-	for (size_t i = mask; i < netIP.size(); i++) {
+	for (int i = mask; i < netIP.size(); i++) {
 		netIP[i] = '0';
 	}
 
-	//разбиваем на 4 части по 8 бит
+	//split for 4 parts(8 bit)
 	string decimalIP;
 	for (int i = 0; i < 4; i++) {
 		string octet = netIP.substr(i * 8, 8);
@@ -24,7 +24,7 @@ string netAddress(const string& binaryIP, const int mask) {
 string broadAddress(const string& binaryIP, const int mask) {
 	string broadIP = binaryIP;
 
-	for (size_t i = mask; i < broadIP.size(); i++) {
+	for (int i = mask; i < broadIP.size(); i++) {
 		broadIP[i] = '1';
 	}
 

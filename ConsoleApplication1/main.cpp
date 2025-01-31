@@ -2,23 +2,21 @@
 #include "functions.h"
 
 int main() {
-	setlocale(LC_ALL, "RUS");
-
 	string IP;
 	int mask = 0;
 
 	while (true) {
 
-		cout << "qq, введи IP: ";
+		cout << "IP: ";
 		cin >> IP;
 		cin.ignore();
 
-		cout << "введи маску: ";
+		cout << "Subnet mask: ";
 		cin >> mask;
 		cin.ignore();
 
-		cout << "результат: " << IP << "/" << mask << endl <<
-			"если ввод корректный, нажми ENTER. если нет, введи что-нибудь другое";
+		cout << "Address: " << IP << "/" << mask << endl <<
+			"Correct? ENTER - YES; ANYTHING ELSE - NO.";
 
 		string input;
 		getline(cin, input);
@@ -36,7 +34,7 @@ int main() {
 				formatted << ".";
 			}
 		}
-		cout << "\nдвоичка: " << formatted.str() << endl;
+		cout << "\nbinary: " << formatted.str() << endl;
 	}
 
 	string netIP = netAddress(binaryIP, mask);
@@ -47,7 +45,11 @@ int main() {
 	int hosts = Hosts(mask);
 	cout << "\nhosts: " << hosts << endl;
 
+	string firstAdd = firstAddress(netIP);
+	cout << "first: " << firstAdd;
 
+	string lastAdd = lastAddress(broadIP);
+	cout << "\nlast: " << lastAdd;
 
 	return 0;
 }

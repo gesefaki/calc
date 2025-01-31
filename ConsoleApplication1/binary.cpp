@@ -2,28 +2,29 @@
 #include "functions.h"
 
 string Binary(const string& IP) {
-	string binaryIP; // result string
-	string octet; // current octet
+	string binaryIP; // result
+	string octet; // ������� �����
 	try {
 		for (char ch : IP) {
 			if (ch == '.') {
 				if (octet.empty()) {
-					throw invalid_argument("Íåêîððåêòíûé IP: ïóñòîé îêòåò.");
+					throw invalid_argument("Invalip IP: Empty Octet");
 				}
 
+				// octet to int => decimal to binary
 				int num = stoi(octet);
 				if (num < 0 || num > 255) {
-					throw invalid_argument("Îêòåò âíå äèàïàçîíà: íåîáõîäèìî ÷èñëî îò 0 äî 255.");
+					throw invalid_argument("Out of data 0-255");
 				}
 				bitset<8> binary(num);
 				binaryIP += binary.to_string();
-				octet.clear(); 
+				octet.clear(); // clear octet for next numb
 			}
 			else if (isdigit(ch)) {
-				octet += ch; /
+				octet += ch; // +1 to octet
 			}
 			else {
-				throw invalid_argument("Íåäîïóñòèìûé ñèìâîë");
+				throw invalid_argument("Delimiter is not a dot");
 			}
 		}
 
@@ -32,7 +33,7 @@ string Binary(const string& IP) {
 		binaryIP += binary.to_string();
 	}
 	catch (const invalid_argument& e) {
-		cerr << "Îøèáêà: " <<  e.what() << endl;
+		cerr << "Error: " << e.what() << endl;
 		return " ";
 	}
 
