@@ -2,9 +2,9 @@
 #include "functions.h"
 
 string Binary(const string& IP) {
-	using namespace std;
-	string binaryIP; // ðåçóëüòàò
-	string octet; // òåêóùèé îêòåò
+	setlocale(LC_ALL, "RUS");
+	string binaryIP; // result string
+	string octet; // current octet
 	try {
 		for (char ch : IP) {
 			if (ch == '.') {
@@ -12,17 +12,16 @@ string Binary(const string& IP) {
 					throw invalid_argument("Íåêîððåêòíûé IP: ïóñòîé îêòåò.");
 				}
 
-				// ïðåîáðàçóåì îêòåò â ÷èñëî è çàòåì â äâîè÷êó
 				int num = stoi(octet);
 				if (num < 0 || num > 255) {
 					throw invalid_argument("Îêòåò âíå äèàïàçîíà: íåîáõîäèìî ÷èñëî îò 0 äî 255.");
 				}
 				bitset<8> binary(num);
 				binaryIP += binary.to_string();
-				octet.clear(); //î÷èùàåì îêòåò äëÿ ñëåäóþùåãî ÷èñëà
+				octet.clear(); 
 			}
 			else if (isdigit(ch)) {
-				octet += ch; // +öèôðà ê íîâîìó îêòåòó
+				octet += ch; /
 			}
 			else {
 				throw invalid_argument("Íåäîïóñòèìûé ñèìâîë");
