@@ -12,4 +12,3 @@ int Hosts(const int mask) {
 
 	return result;
 }
-// LOL EBAT VOT ETO FUNKCIONAL
